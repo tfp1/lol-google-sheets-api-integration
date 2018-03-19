@@ -24,3 +24,24 @@ var parsedValues = JSON.parse(response.getContentText());
 var accountId = parsedValues.accountId.toString();
 return accountId;
 }
+
+function getMatchURL(){
+var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var accountId = getSummonerIdByName();
+  var apiKey = getApiKey();
+  var season = getDesiredSeason();
+  var url = 
+    'https://na1.api.riotgames.com/lol/match/v3/matchlists/by-account/'
+    +accountId
+    +'?'
+  //  +'beginIndex='
+  //  +0 //starting index value
+  //  +'&endIndex='
+  //  +100 //end index value
+    +'queue=440'
+    +'&season='
+    +season
+    +'&api_key='
+    +apiKey;
+Logger.log(url);
+}

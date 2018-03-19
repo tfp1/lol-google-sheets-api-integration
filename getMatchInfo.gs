@@ -36,7 +36,15 @@ var ss = SpreadsheetApp.getActiveSpreadsheet();
     +'&api_key='
     +apiKey;
 var response = UrlFetchApp.fetch(url, {'muteHttpExceptions': true});
-var parsedValues = JSON.parse(response.toString());
-//var MatchId = parsedValues.matches[0].gameId.toString();
-Logger.log(parsedValues);
+var dataAll = JSON.parse(response.getContentText());
+var data = JSON.stringify(dataAll.matches,["gameId","champion","lane","role","timestamp"]);
+for (i in data){
+data[i].gameId = gameId[i]
+};
+Logger.log(data);
+
+//var parsedValues = JSON.parse(response.getContentText());
+//var matches = JSON.stringify(parsedValues.matches,["gameId","champion","lane","role","timestamp"]);
+//Logger.log(response);
+//Logger.log(matches);
 }
